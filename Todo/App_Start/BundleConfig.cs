@@ -23,7 +23,7 @@ namespace Todo
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap3-lumen.css",
                       "~/Content/site.css"));
         }
     }

@@ -22,3 +22,29 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* My css classes */
+.mybtn-fullwidth {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: 2px solid red; 
+}
+
+.task-button-col-orange {
+    color: darkorange;
+}
+
+.task-button-col-green {
+    color: darkgreen;
+}
+
+.task-button-col-red {
+    color: red;
+}

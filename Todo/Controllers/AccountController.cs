@@ -75,7 +75,8 @@ namespace Todo.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // Note: I repaced model.Emai with model.UserName
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -149,9 +150,11 @@ namespace Todo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+ 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                var user = new ApplicationUser { UserName = model.UserName, Email = $"{model.UserName}@{ApplicationUser.EmailCompanyName}" };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -163,7 +166,7 @@ namespace Todo.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("TodoList", "Todotask");
                 }
                 AddErrors(result);
             }
@@ -172,6 +175,7 @@ namespace Todo.Controllers
             return View(model);
         }
 
+        /*
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -228,6 +232,7 @@ namespace Todo.Controllers
         {
             return View();
         }
+        */
 
         //
         // GET: /Account/ResetPassword
@@ -248,7 +253,7 @@ namespace Todo.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.UserName);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -392,7 +397,7 @@ namespace Todo.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("TodoList", "Todotask");
         }
 
         //
@@ -449,7 +454,7 @@ namespace Todo.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("TodoList", "Todotask");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

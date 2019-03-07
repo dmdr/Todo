@@ -1,0 +1,77 @@
+﻿
+@model Todo.ViewModels.UserTasksViewModel
+
+@{
+    ViewBag.Title = "Todo List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.UserName's To-Do List </h2>
+@Html.ActionLink("Add New Item", "NewTask", "Todotask", new { @class = "btn btn-primary" })
+
+<br />
+
+
+
+@if (!Model.Todotasks.Any())
+{
+    <text>You currently do have have any To-Do Tasks</text>
+}
+else
+{
+    <table id="TabTasks" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Done</th>
+                <th>Last Updated</th>
+                <th><div class="task-button-col-red">Remove</div></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model.Todotasks)
+            {
+                <tr>
+                    <td>@Html.ActionLink(task.Name, "EditTask", "Todotask", new { id = task.Id }, null)</td>
+                    <td>@task.Description</td>
+                    <td><button data-task-id="@task.Id" class="btn-link js-toggle @(task.Done ? "task-button-col-green" : "task-button-col-orange")">@(task.Done ? "Yes" : "No")</button></td>
+                    <td>@task.UpdatedDT</td>
+                    <td><button data-task-id="@task.Id" class="btn-link js-delete task-button-col-red">Remove</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#TabTasks").on("click", ".js-delete", function () {
+                var buttonClicked = $(this);
+
+                if (confirm("Are you sure you want to remove this task?")) {
+                    $.ajax({
+                        url: "/Todotask/DeleteTask/" + buttonClicked.attr("data-task-id"),
+                        method: "POST",
+                        success: function () {
+                            buttonClicked.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+            /* Adding this toggle option in jquery to get around the problem of sending a HttpPost Request from an Html.ActionLink statement */
+            $("#TabTasks").on("click", ".js-toggle", function () {
+                $.ajax({
+                    url: "/Todotask/ToggleDone/" + $(this).attr("data-task-id"),
+                    method: "POST",
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+
+        });
+    </script>
+}

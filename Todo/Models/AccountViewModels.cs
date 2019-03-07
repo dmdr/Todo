@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+/* replaced "Email" with "User Name" and Email wiht UserName */ 
 namespace Todo.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "User Name")]
         public string Email { get; set; }
     }
 
@@ -42,16 +43,18 @@ namespace Todo.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        //[EmailAddress]
+        [StringLength(24)]
+        [MinLength(4)]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -65,9 +68,11 @@ namespace Todo.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        //[EmailAddress]
+        [StringLength(24)]
+        [MinLength(4)]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -84,9 +89,11 @@ namespace Todo.Models
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        //[EmailAddress]
+        [StringLength(24)]
+        [MinLength(4)]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -105,8 +112,10 @@ namespace Todo.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        //[EmailAddress]
+        [StringLength(24)]
+        [MinLength(4)]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
     }
 }
