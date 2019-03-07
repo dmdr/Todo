@@ -7,13 +7,13 @@ namespace Todo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class PopulateSampleUsers : IMigrationMetadata
+    public sealed partial class AddSampleUsers : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateSampleUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddSampleUsers));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903062314398_PopulateSampleUsers"; }
+            get { return "201903071256495_AddSampleUsers"; }
         }
         
         string IMigrationMetadata.Source

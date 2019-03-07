@@ -13,7 +13,7 @@ namespace Todo.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903061915563_InitialModel"; }
+            get { return "201903071256223_InitialModel"; }
         }
         
         string IMigrationMetadata.Source

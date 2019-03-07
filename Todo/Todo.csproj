@@ -179,13 +179,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903061915563_InitialModel.cs" />
-    <Compile Include="Migrations\201903061915563_InitialModel.Designer.cs">
-      <DependentUpon>201903061915563_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201903071256223_InitialModel.cs" />
+    <Compile Include="Migrations\201903071256223_InitialModel.Designer.cs">
+      <DependentUpon>201903071256223_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903062314398_PopulateSampleUsers.cs" />
-    <Compile Include="Migrations\201903062314398_PopulateSampleUsers.Designer.cs">
-      <DependentUpon>201903062314398_PopulateSampleUsers.cs</DependentUpon>
+    <Compile Include="Migrations\201903071256495_AddSampleUsers.cs" />
+    <Compile Include="Migrations\201903071256495_AddSampleUsers.Designer.cs">
+      <DependentUpon>201903071256495_AddSampleUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,11 +273,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903061915563_InitialModel.resx">
-      <DependentUpon>201903061915563_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903071256223_InitialModel.resx">
+      <DependentUpon>201903071256223_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903062314398_PopulateSampleUsers.resx">
-      <DependentUpon>201903062314398_PopulateSampleUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903071256495_AddSampleUsers.resx">
+      <DependentUpon>201903071256495_AddSampleUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
